@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-mongoose.connect("mongodb+srv://rushitarpe749:rushitarpe749@cluster0.zasqi5f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then( ()=> {
+mongoose.connect(process.env.MONGODB_URI).then( ()=> {
     console.log('Connected to the database');
     
 }).catch((err) => {

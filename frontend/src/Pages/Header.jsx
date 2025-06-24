@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { BarChart3, Upload, TrendingUp, Users, Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,7 +11,7 @@ const Header = () => {
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
+    <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
       <nav className="relative z-20 container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -28,11 +30,24 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <NavLink icon={<Upload className="w-4 h-4" />} text="Upload" />
-            <NavLink icon={<BarChart3 className="w-4 h-4" />} text="Analytics" />
-            <NavLink icon={<TrendingUp className="w-4 h-4" />} text="Dashboard" />
-            <NavLink icon={<Users className="w-4 h-4" />} text="Admin" />
+            <NavLink icon={<BarChart3 className="w-4 h-4" />} text="Home" to="/" />
+            <NavLink icon={<Upload className="w-4 h-4" />} text="Upload" to="/upload" />
+            <NavLink icon={<BarChart3 className="w-4 h-4" />} text="Analytics" to="/analytics" />
+            <NavLink icon={<TrendingUp className="w-4 h-4" />} text="Dashboard" to="/dashboard" />
+            {/* Account Dropdown */}
+              <div className="relative group">
+                <button className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors duration-300">
+                  <Users className="w-4 h-4" />
+                  <span className="font-medium">Account</span>
+                </button>
+
+                <div className="absolute right-0 mt-2 w-40 bg-slate-800 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transform scale-95 group-hover:scale-100 transition-all duration-200 z-50">
+                  <Link to="/sign-up" className="block px-4 py-2 text-white/80 hover:bg-slate-700 hover:text-white">Register</Link>
+                  <Link to="/sign-in" className="block px-4 py-2 text-white/80 hover:bg-slate-700 hover:text-white">Login</Link>
+                </div>
+              </div>
           </div>
+
 
           {/* Mobile menu button */}
           <button
@@ -45,32 +60,35 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-black/90 backdrop-blur-lg border-t border-white/10 mt-2">
-            <div className="container mx-auto px-6 py-4 space-y-4">
-              <MobileNavLink icon={<Upload className="w-5 h-5" />} text="Upload Excel" />
-              <MobileNavLink icon={<BarChart3 className="w-5 h-5" />} text="Analytics" />
-              <MobileNavLink icon={<TrendingUp className="w-5 h-5" />} text="Dashboard" />
-              <MobileNavLink icon={<Users className="w-5 h-5" />} text="Admin Panel" />
-            </div>
+          <div className="container mx-auto px-6 py-4 space-y-4">
+            <MobileNavLink icon={<BarChart3 className="w-5 h-5" />} text="Home" to="/" />
+            <MobileNavLink icon={<Upload className="w-5 h-5" />} text="Upload Excel" to="/upload" />
+            <MobileNavLink icon={<BarChart3 className="w-5 h-5" />} text="Analytics" to="/analytics" />
+            <MobileNavLink icon={<TrendingUp className="w-5 h-5" />} text="Dashboard" to="/dashboard" />
+            <MobileNavLink icon={<Users className="w-5 h-5" />} text="Register" to="/sign-up" />
+            <MobileNavLink icon={<Users className="w-5 h-5" />} text="Login" to="/sign-in" />
           </div>
+
         )}
       </nav>
     </div>
   );
 };
 
-const NavLink = ({ icon, text }) => (
-  <a href="#" className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">
+const NavLink = ({ icon, text, to }) => (
+  <Link to={to} className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors duration-300 hover:scale-105 transform">
     {icon}
     <span className="font-medium">{text}</span>
-  </a>
+  </Link>
 );
 
-const MobileNavLink = ({ icon, text }) => (
-  <a href="#" className="flex items-center space-x-3 text-white/80 hover:text-white transition-colors duration-300 py-2">
+const MobileNavLink = ({ icon, text, to }) => (
+  <Link to={to} className="flex items-center space-x-3 text-white/80 hover:text-white transition-colors duration-300 py-2">
     {icon}
     <span className="font-medium">{text}</span>
-  </a>
+  </Link>
 );
+
+
 
 export default Header;

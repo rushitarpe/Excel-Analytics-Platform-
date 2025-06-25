@@ -8,6 +8,8 @@ import Footer from './Pages/Footer'
 import Contact from './Pages/Contact'
 import About from './Pages/About'
 import Dashboard from './Pages/DashBoard'
+import Analytics from './Pages/Analytics'
+import Upload from './Pages/Upload'
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
        <Route path="/sign-up" element={<SignupFrom />} />
        <Route path="/sign-in" element={<SignInFrom />} />
        <Route path="/" element={<Home />} />
+       <Route path="/analytics" element={<Analytics />} />
+       <Route path="/upload" element={<Upload />} />
        <Route path="/about" element={<About />} />
        <Route path="/contact" element={<Contact />} />
        <Route path="/dashboard" element={<Dashboard />} />

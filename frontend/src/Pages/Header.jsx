@@ -29,24 +29,28 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <NavLink icon={<BarChart3 className="w-4 h-4" />} text="Home" to="/" />
-            <NavLink icon={<Upload className="w-4 h-4" />} text="Upload" to="/upload" />
-            <NavLink icon={<BarChart3 className="w-4 h-4" />} text="Analytics" to="/analytics" />
-            <NavLink icon={<TrendingUp className="w-4 h-4" />} text="Dashboard" to="/dashboard" />
-            {/* Account Dropdown */}
+            <div className="hidden md:flex items-center space-x-8">
+              
+              <NavLink icon={<BarChart3 className="w-4 h-4" />} text="Home" to="/" />
+              <NavLink icon={<Upload className="w-4 h-4" />} text="Upload" to="/upload" />
+              <NavLink icon={<BarChart3 className="w-4 h-4" />} text="Analytics" to="/analytics" />
+              <NavLink icon={<TrendingUp className="w-4 h-4" />} text="Dashboard" to="/dashboard" />
+
+              {/* Account Dropdown */}
               <div className="relative group">
-                <button className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors duration-300">
+                <button className="flex items-center space-x-2 text-white/80 hover:text-white transition-all duration-300 hover:scale-105">
                   <Users className="w-4 h-4" />
                   <span className="font-medium">Account</span>
                 </button>
 
-                <div className="absolute right-0 mt-2 w-40 bg-slate-800 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transform scale-95 group-hover:scale-100 transition-all duration-200 z-50">
-                  <Link to="/sign-up" className="block px-4 py-2 text-white/80 hover:bg-slate-700 hover:text-white">Register</Link>
-                  <Link to="/sign-in" className="block px-4 py-2 text-white/80 hover:bg-slate-700 hover:text-white">Login</Link>
+                <div className="absolute right-0 mt-2 w-44 backdrop-blur-lg bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 border border-white/20 rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transform scale-95 group-hover:scale-100 transition-all duration-200 z-50">
+                  <Link to="/sign-up" className="block px-4 py-2 text-white/80 hover:bg-white/10 hover:text-white">Register</Link>
+                  <Link to="/sign-in" className="block px-4 py-2 text-white/80 hover:bg-white/10 hover:text-white">Login</Link>
                 </div>
               </div>
-          </div>
+
+            </div>
+
 
 
           {/* Mobile menu button */}

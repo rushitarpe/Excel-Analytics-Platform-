@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BarChart3, Upload, Download, Eye, Shield, Zap, FileSpreadsheet, TrendingUp, Users, Sparkles, CheckCircle, ArrowRight, Star, Play, Clock, Database, Cpu, Globe, Lock, RefreshCw, Target, Award, Layers } from 'lucide-react';
+import Startfreetrialbutton from './Startfreetrialbutton';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -198,7 +199,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="text-center">
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 leading-tight">
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 leading-tight">
               Transform Your
               <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-400 bg-clip-text text-transparent">
                 Excel Data
@@ -210,10 +211,7 @@ const Home = () => {
               No coding required - just drag, drop, and visualize your data in seconds.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-5 rounded-xl text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-2xl">
-                <Upload className="w-5 h-5 inline mr-2" />
-                Start Free Trial
-              </button>
+              <Startfreetrialbutton />
               <button className="bg-white/10 backdrop-blur text-white border border-white/20 px-10 py-5 rounded-xl text-lg font-semibold hover:bg-white/20 transition-all duration-300 group">
                 <Play className="w-5 h-5 inline mr-2 group-hover:scale-110 transition-transform" />
                 Watch Demo
@@ -225,6 +223,7 @@ const Home = () => {
               <div className="flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-green-400" />Setup in 30 Seconds</div>
             </div>
           </div>
+
         </div>
 
         {/* Floating Elements */}

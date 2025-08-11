@@ -1,6 +1,10 @@
 import React from 'react';
 
 const SignInFrom = () => {
+
+
+
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 px-4">
       <div className="backdrop-blur-lg bg-white/10 border border-white/20 p-8 rounded-2xl shadow-2xl w-full max-w-md space-y-6">

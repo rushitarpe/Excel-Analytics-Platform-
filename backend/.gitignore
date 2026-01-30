@@ -22,4 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.envnode_modules/
 .env
+uploads/
+*.log
+.DS_Store

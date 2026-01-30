@@ -1,40 +1,83 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './index.css'
-import Header from './Pages/Header'
-import SignupFrom from './Components/Auth/SignupFrom'
-import SignInFrom from './Components/Auth/SignInFrom'
-import Home from './Pages/Home'
-import Footer from './Pages/Footer'
-import Contact from './Pages/Contact'
-import About from './Pages/About'
-import Dashboard from './Pages/DashBoard'
-import Analytics from './Pages/Analytics'
-import Upload from './Pages/Upload'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './context/AuthContext';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import PrivateRoute from './components/PrivateRoute';
 
-const App = () => {
+// Pages
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Upload from './pages/Upload';
+import Analytics from './pages/Analytics';
+import Charts from './pages/Charts';
+import Dashboard from './pages/Dashboard';
+import AdminDashboard from './pages/AdminDashboard';
+
+function App() {
   return (
-    <div>
-      <BrowserRouter>
-      <Header />
-      <Routes>
-
-       
-       <Route path="/sign-up" element={<SignupFrom />} />
-       <Route path="/sign-in" element={<SignInFrom />} />
-       <Route path="/" element={<Home />} />
-       <Route path="/analytics" element={<Analytics />} />
-       <Route path="/upload" element={<Upload />} />
-       <Route path="/about" element={<About />} />
-       <Route path="/contact" element={<Contact />} />
-       <Route path="/dashboard" element={<Dashboard />} />
-      
-      </Routes>
-      <Footer />
-      
-      </BrowserRouter>
-
-    </div>
-  )
+    <AuthProvider>
+      <Router>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              
+              {/* Protected Routes */}
+              <Route
+                path="/upload"
+                element={
+                  <PrivateRoute>
+                    <Upload />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/analytics"
+                element={
+                  <PrivateRoute>
+                    <Analytics />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/charts"
+                element={
+                  <PrivateRoute>
+                    <Charts />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              
+              {/* Admin Only Routes */}
+              <Route
+                path="/admin"
+                element={
+                  <PrivateRoute adminOnly={true}>
+                    <AdminDashboard />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+        <Toaster position="top-right" />
+      </Router>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;

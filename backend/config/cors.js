@@ -9,12 +9,18 @@ const corsOptions = {
     if (!origin) return callback(null, true);
     
     const allowedOrigins = [
-      process.env.CLIENT_URL || 'http://localhost:5173',
+      process.env.CLIENT_URL,
+      'http://localhost:5173',
       'http://localhost:3000',
       'http://localhost:5174'
-    ];
+    ].filter(Boolean);
 
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    const isAllowed = allowedOrigins.includes(origin) || 
+                      origin.endsWith('.onrender.com') || 
+                      // Allow same-origin requests (where origin matches current protocol + host)
+                      (process.env.NODE_ENV === 'production' && origin.startsWith('https://'));
+
+    if (isAllowed) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));

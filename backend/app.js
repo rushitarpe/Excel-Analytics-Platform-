@@ -61,22 +61,6 @@ app.use('/api/charts', chartRoutes);
 app.use('/api/insights', insightRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Root route
-app.get('/', (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Excel Analytics & Visualization Platform API',
-    version: '1.0.0',
-    endpoints: {
-      health: '/health',
-      auth: '/api/auth',
-      uploads: '/api/uploads',
-      charts: '/api/charts',
-      insights: '/api/insights',
-      admin: '/api/admin'
-    }
-  });
-});
 
 // Serve frontend
 app.use(express.static(path.join(__dirname, '../frontend/dist')));

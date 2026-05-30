@@ -5,6 +5,11 @@ import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import corsOptions from './config/cors.js';
 import { errorHandler, notFound } from './middleware/error.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Import routes
 import authRoutes from './routes/authRoutes.js';
@@ -71,6 +76,14 @@ app.get('/', (req, res) => {
       admin: '/api/admin'
     }
   });
+});
+
+// Serve frontend
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// Catch-all for frontend routes
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../frontend/dist', 'index.html'));
 });
 
 // Error handlers (must be last)
